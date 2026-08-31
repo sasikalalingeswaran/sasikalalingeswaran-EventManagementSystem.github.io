@@ -184,64 +184,34 @@
 
     <div class="form-group">
         <label class="events-title">Select Event</label>
-
         <div class="events">
-
             {% for e in event_names %}
-
             <label class="event-option">
-                <input
-                    type="checkbox"
-                    name="selectedevent"
-                    value="{{ e.eventname }}"
-                >
-
+                <input type="checkbox" name="selectedevent" value="{{ e.eventname }}">
                 <span>{{ e.eventname }}</span>
             </label>
-
             {% endfor %}
-
         </div>
     </div>
 
     <button type="submit" id="reg">
         Pay
     </button>
-
 </form>
-
-
 <script>
     function displayevents() {
-
         const interest = document.getElementById('interest').value;
-        const recommendEvent =
-            document.getElementById('recommendEvent');
-
+        const recommendEvent = document.getElementById('recommendEvent');
         if (interest === 'communication') {
-
-            recommendEvent.innerText =
-                '* Recommended event: Power Point Presentation';
-
+            recommendEvent.innerText = '* Recommended event: Power Point Presentation';
         } else if (interest === 'computer knowledge') {
-
-            recommendEvent.innerText =
-                '* Recommended event: Quiz';
-
+            recommendEvent.innerText = '* Recommended event: Quiz';
         } else if (interest === 'coding skills') {
-
-            recommendEvent.innerText =
-                '* Recommended event: Debugging';
-
+            recommendEvent.innerText = '* Recommended event: Debugging';
         } else if (interest === 'web designing skills') {
-
-            recommendEvent.innerText =
-                '* Recommended event: Logo Designing';
-
+            recommendEvent.innerText = '* Recommended event: Logo Designing';
         } else {
-
             recommendEvent.innerText = '';
-
         }
     }
 </script>
