@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* PAYMENT CARD */
+
+    #pay {
+        width: 400px;
+        padding: 32px;
+
+        border: 1px solid #e2e5eb;
+        border-radius: 22px;
+
+        background: rgba(255, 255, 255, 0.95);
+
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
+
+        text-align: center;
+    }
+
+    /* TOP ICON */
+
+    .payment-icon {
+        margin-left: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;     
+        gap: 20px; 
+        font-size: 27px;
+        color: rgb(2, 3, 66);
+    }
+    .payment-icon p{
+        font-size: 10px;
+        color: gray;
+    }
+    #pay h2 {
+        margin: 20px;
+        font-size: 34px;
+        font-weight: 700;
+        color: #171717;
+    }
+
+    #pay h2 span {
+        font-size: 13px;
+        vertical-align: top;
+        margin-right: 2px;
+        color: #555;
+    }
+
+    .amount-label {
+        margin-top: 2px;
+        font-size: 13px;
+        color: #777;
+    }
+
+    /* DIVIDER */
+
+    .divider {
+        height: 1px;
+        background: #e5e7eb;
+
+        margin: 22px 0;
+    }
+
+    /* PAY TO */
+
+    .pay-to {
+        text-align: left;
+
+        padding: 13px 15px;
+
+        border-radius: 10px;
+
+        background: #f8f9fc;
+    }
+
+    .pay-to-title {
+        font-size: 11px;
+        color: #888;
+
+        margin-bottom: 3px;
+    }
+
+    .pay-to-id {
+        font-size: 14px;
+        font-weight: 600;
+
+        color: #252525;
+    }
+
+
+    #payment {
+        margin-top: 22px;
+    }
+
+    .input-title {
+        display: block;
+
+        text-align: left;
+
+        margin-bottom: 7px;
+
+        font-size: 12px;
+        font-weight: 500;
+
+        color: #444;
+    }
+
+    .input-box {
+        position: relative;
+    }
+
+    .input-box i {
+        position: absolute;
+
+        left: 14px;
+        top: 50%;
+
+        transform: translateY(-50%);
+
+        color: #777;
+
+        font-size: 14px;
+    }
+
+    #payment input {
+        width: 100%;
+        height: 46px;
+
+        padding: 0 14px 0 40px;
+
+        font-family: 'Poppins', sans-serif;
+        font-size: 13px;
+
+        border: 1px solid #d1d5db;
+        border-radius: 9px;
+
+        background: #fff;
+
+        transition: 0.2s;
+    }
+
+    #payment input:focus {
+        outline: none;
+    }
+
+    #paynow {
+        width: 100%;
+        height: 48px;
+
+        margin-top: 20px;
+
+        border: none;
+        border-radius: 9px;
+
+        background: rgb(37, 89, 231);
+
+        color: white;
+
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+
+        cursor: pointer;
+
+        transition: 0.25s;
+    }
+
+    #paynow:hover {
+        background: rgb(13, 13, 187);
+
+        transform: translateY(-1px);
+
+        box-shadow: 0 7px 18px rgba(79, 70, 229, 0.25);
+    }
+
+    #paynow i {
+        margin-right: 7px;
+    }
+
+    /* UPI LOGOS */
+
+    .upi-methods {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .upi-methods span {
+        padding: 5px 10px;
+
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+
+        font-size: 10px;
+        font-weight: 500;
+
+        color: #555;
+
+        background: #fff;
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<div id="pay">
+
+<!-- PAYMENT ICON -->
+
+<div class="payment-icon">
+    <i class="fa-solid fa-credit-card"></i>
+    <p> Event Registration Fee </p>
+</div>
+
+<!-- AMOUNT -->
+
+<h2>
+    <span>Rs.</span>150
+</h2>
+
+
+<div class="divider"></div>
+
+<!-- PAY TO -->
+
+<div class="pay-to">
+
+    <div class="pay-to-title">
+        PAY TO
+    </div>
+
+    <div class="pay-to-id">
+        <i class="fa-solid fa-building-columns"></i>
+        greenfieldcoe@
+    </div>
+
+</div>
+
+<!-- PAYMENT FORM -->
+
+<form id="payment">
+
+    <label class="input-title">
+        UPI ID
+    </label>
+
+    <div class="input-box">
+
+        <i class="fa-solid fa-wallet"></i>
+
+        <input
+            type="text"
+            name="upi"
+            placeholder="example@upi"
+            autocomplete="off"
+            required
+        >
+
+    </div>
+
+    <button type="submit" id="paynow">
+        <i class="fa-solid fa-lock"></i>
+        <a href="/paymentsuccess" style="color:white;text-decoration:none;">
+            Pay ₹150
+        </a>
+    </button>
+
+</form>
+
+<!-- PAYMENT METHODS -->
+
+<div class="upi-methods">
+    <span>UPI</span>
+    <span>GPay</span>
+    <span>PhonePe</span>
+    <span>Paytm</span>
+</div>
+
+
+</div>
+
+</body>
+
+</html>

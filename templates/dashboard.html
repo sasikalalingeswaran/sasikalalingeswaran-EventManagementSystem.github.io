@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Poppins, sans-serif;
+            background: #f5f7f6;
+            color: #222;
+        }
+
+        .header {
+            height: 90px;
+            display: flex;
+            align-items: center;
+            padding: 10px 30px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+
+        .header img {
+            width: 75px;
+            height: 70px;
+            object-fit: contain;
+        }
+
+        .header-text {
+            margin-left: 15px;
+        }
+
+        .header h4 {
+            margin: 0;
+            font-size: 24px;
+            color: rgb(1, 46, 1);
+        }
+
+        .header h6 {
+            margin: 2px 0 0;
+            color: rgb(238, 44, 76);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .dashboard {
+            padding: 30px;
+        }
+
+        .dashboard-title {
+            font-size: 26px;
+            margin-bottom: 25px;
+            color: #123d20;
+        }
+
+        .cards {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 13px 12px rgba(0, 0, 0, 0.08);
+            width: 15%;
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 10px;
+            color: #666;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .card p {
+            margin: 10px 0 0;
+            font-size: 15px;
+            font-weight: 600;
+            color: #123d20;
+            text-align: center;
+        }
+
+
+        .charts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .chart-box {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .chart-box h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #123d20;
+            font-size: 18px;
+        }
+
+        .chart-container {
+            height: 350px;
+            position: relative;
+        }
+
+
+        @media (max-width: 800px) {
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .charts {
+                grid-template-columns: 1fr;
+            }
+
+            .header h4 {
+                font-size: 18px;
+            }
+
+            .dashboard {
+                padding: 20px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <img src="/static/greenfield_college_of_engineering_logo.png">
+
+        <div class="header-text">
+            <h4>Greenfield College of Engineering</h4>
+            <h6>Admin Panel</h6>
+        </div>
+
+    </div>
+
+    <div class="dashboard">
+
+        <h2 class="dashboard-title">Admin Dashboard</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Events</h3>
+                <p>{{ total_events }}</p>
+            </div>
+
+            <div class="card">
+                <h3>Registered Events</h3>
+                <p>{{ total_registered_events }}</p>
+            </div>
+
+        </div>
+
+
+        <!-- CHARTS -->
+
+        <div class="charts">
+
+            <!-- TECH VS NON TECH -->
+
+            <div class="chart-box">
+
+                <h3>Technical vs Non-Technical Registrations</h3>
+
+                <div class="chart-container">
+                    <canvas id="techChart"></canvas>
+                </div>
+
+            </div>
+
+
+            <!-- MOST REGISTERED EVENTS -->
+
+            <div class="chart-box">
+
+                <h3>Most Registered Events</h3>
+
+                <div class="chart-container">
+                    <canvas id="eventChart"></canvas>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* -----------------------------------
+           TECH VS NON-TECH BAR CHART
+        ----------------------------------- */
+
+        const techCtx = document
+            .getElementById('techChart')
+            .getContext('2d');
+
+        new Chart(techCtx, {
+
+            type: 'bar',
+
+            data: {
+
+                labels: [
+                    'Technical',
+                    'Non-Technical'
+                ],
+
+                datasets: [{
+                    label: 'Registrations',
+
+                    data: [
+                        {{ tech_count }},
+                        {{ nontech_count }}
+                    ],
+
+                    backgroundColor: [
+                        '#2e7d32',
+                        '#ef476f'
+                    ],
+
+                    borderRadius: 6
+
+                }]
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                scales: {
+
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            precision: 0
+                        }
+                    }
+
+                },
+
+                plugins: {
+
+                    legend: {
+                        display: false
+                    }
+
+                }
+
+            }
+
+        });
+
+        const eventCtx = document
+            .getElementById('eventChart')
+            .getContext('2d');
+
+        new Chart(eventCtx, {
+
+            type: 'pie',
+
+            data: {
+
+                labels: {{ event_names | tojson }},
+
+                datasets: [{
+
+                    data: {{ event_counts | tojson }},
+
+                    backgroundColor: [
+                        '#2e7d32',
+                        '#ef476f',
+                        '#2196f3',
+                        '#ff9800',
+                        '#9c27b0',
+                        '#009688',
+                        '#795548',
+                        '#607d8b'
+                    ],
+
+                    borderWidth: 2
+
+                }]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                plugins: {
+
+                    legend: {
+                        position: 'right'
+                    }
+
+                }
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>

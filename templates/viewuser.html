@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Users</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+          rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 25px;
+            font-family: 'Poppins', sans-serif;
+            background: #f5f5f5;
+        }
+
+        h2 {
+            text-align: center;
+            margin: 10px 0 30px;
+            font-size: 25px;
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            table-layout: fixed;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 12px 10px;
+            text-align: center;
+            word-wrap: break-word;
+        }
+
+        th {
+            background: #4f46e5;
+            color: white;
+            font-weight: 500;
+        }
+
+        td {
+            color: black;
+            font-size: 14px;
+        }
+
+        tr:hover {
+            background: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Users</h2>
+
+    <table>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>College Name</th>
+            <th>Department</th>
+        </tr>
+
+        {% for a in all_user %}
+        <tr>
+            <td>{{ a.username }}</td>
+            <td>{{ a.email }}</td>
+            <td>{{ a.contact }}</td>
+            <td>{{ a.collegename }}</td>
+            <td>{{ a.department }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>

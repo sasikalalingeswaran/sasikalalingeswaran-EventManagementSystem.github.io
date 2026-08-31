@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenField Events</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: "Poppins", sans-serif;
+        background: #f4f7f9;
+        color: #222;
+    }
+
+    .navbar {
+        width: 100%;
+        height: 75px;
+        background: linear-gradient(135deg, #03678f, #024b69);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 55px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .brand img {
+        width: 48px;
+        height: 48px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .college-name {
+        color: white;
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 1.3;
+    }
+
+    .username {
+        color: #d7f4ff;
+        font-size: 13px;
+        font-weight: 400;
+    }
+
+    .nav-buttons {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .nav-btn {
+        text-decoration: none;
+        color: white;
+        padding: 9px 20px;
+        border-radius: 25px;
+        font-size: 14px;
+        transition: 0.3s;
+        border: 1px solid white;
+    }
+
+    .view-btn {
+        background: #087fb0;
+    }
+
+    .view-btn:hover {
+        background: white;
+        color: #03678f;
+    }
+
+    .logout-btn {
+        background: transparent;
+    }
+
+    .logout-btn:hover {
+        background: white;
+        color: #03678f;
+    }
+
+    .hero {
+        min-height: 430px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        padding: 60px 20px;
+        margin-top: 50px;
+        background: radial-gradient( circle at 15% 25%, rgba(255, 255, 255, 0.15), transparent 25% ), radial-gradient( circle at 85% 75%, rgba(0, 220, 255, 0.20), transparent 30% ), linear-gradient( 135deg, #023b50 0%, #03678f 50%, #008ca8 100% );
+    }
+
+    .hero-content {
+        max-width: 800px;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+        margin-bottom: 20px;
+        font-weight: 700;
+    }
+
+    .hero h1 i {
+        color: #53d9ff;
+    }
+
+    .hero p {
+        font-size: 18px;
+        line-height: 1.8;
+        color: #e7f7ff;
+    }
+
+    .price {
+        margin-top: 8px;
+        font-size: 28px;
+        font-weight: 600;
+        color: #ffd166;
+    }
+
+    .price span {
+        font-size: 14px;
+    }
+
+    .event-info {
+        margin-top: 15px;
+        font-size: 14px !important;
+        color: #d5e9ff !important;
+    }
+
+    .hero-btn {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 12px 30px;
+        border-radius: 30px;
+        background: #087fb0;
+        color: white;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 500;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        transition: 0.3s;
+    }
+
+    .hero-btn:hover {
+        background: white;
+        color: #03678f;
+        transform: translateY(-2px);
+    }
+
+    .events-section {
+        padding: 70px 6%;
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 30px;
+        font-weight: 600;
+        color: #173b4d;
+    }
+
+    .line {
+        width: 65px;
+        height: 4px;
+        background: #ff9f1c;
+        border-radius: 10px;
+        margin: 12px auto 40px;
+    }
+
+    .filter-container {
+        max-width: 1100px;
+        margin: 0 auto 25px;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .filter-form {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .search-box,
+    .category-select {
+        height: 40px;
+        border: 1px solid #d2dce2;
+        background: white;
+        border-radius: 8px;
+        padding: 0 13px;
+        font-family: "Poppins", sans-serif;
+        outline: none;
+        transition: 0.3s;
+    }
+
+    .search-box {
+        width: 230px;
+    }
+
+    .search-box:focus,
+    .category-select:focus {
+        border-color: #087fb0;
+        box-shadow: 0 0 0 3px rgba(8, 127, 176, 0.1);
+    }
+
+    .filter-btn {
+        width: 42px;
+        height: 40px;
+        border: none;
+        border-radius: 8px;
+        background: #087fb0;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .filter-btn:hover {
+        background: #045b7e;
+        transform: translateY(-1px);
+    }
+
+    .table-container {
+        max-width: 1100px;
+        margin: auto;
+        background: white;
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 750px;
+    }
+
+    thead {
+        background: linear-gradient(135deg, #03678f, #087fb0);
+        color: white;
+    }
+
+    th {
+        padding: 17px 14px;
+        font-size: 13px;
+        font-weight: 600;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    td {
+        padding: 16px 14px;
+        text-align: center;
+        font-size: 13px;
+        color: #444;
+        border-bottom: 1px solid #edf1f3;
+    }
+
+    tbody tr {
+        transition: 0.2s;
+    }
+
+    tbody tr:hover {
+        background: #f1f9fc;
+    }
+
+    tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    td:last-child {
+        font-weight: 600;
+    }
+
+    .register-area {
+        text-align: center;
+        margin-top: 35px;
+    }
+
+    .register-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 32px;
+        background: linear-gradient(135deg, #087fb0, #035d82);
+        color: white;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 500;
+        box-shadow: 0 6px 18px rgba(3, 103, 143, 0.25);
+        transition: 0.3s;
+    }
+
+    .register-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(3, 103, 143, 0.35);
+    }
+
+    footer {
+        margin-top: 30px;
+        background: #023b50;
+        color: white;
+        text-align: center;
+        padding: 22px;
+        font-size: 13px;
+    }
+
+    @media (max-width: 768px) {
+
+        .navbar {
+            height: auto;
+            min-height: 70px;
+            padding: 12px 18px;
+        }
+
+        .brand img {
+            width: 42px;
+            height: 42px;
+        }
+
+        .college-name {
+            font-size: 13px;
+        }
+
+        .username {
+            font-size: 11px;
+        }
+
+        .nav-buttons {
+            gap: 5px;
+        }
+
+        .nav-btn {
+            padding: 7px 10px;
+            font-size: 11px;
+        }
+
+        .hero {
+            min-height: 390px;
+            padding: 45px 20px;
+        }
+
+        .hero h1 {
+            font-size: 30px;
+        }
+
+        .hero p {
+            font-size: 15px;
+        }
+
+        .events-section {
+            padding: 50px 15px;
+        }
+
+        .section-title {
+            font-size: 25px;
+        }
+
+        .filter-container {
+            justify-content: center;
+        }
+
+        .filter-form {
+            justify-content: center;
+            width: 100%;
+        }
+
+        .search-box {
+            width: 100%;
+        }
+
+        .category-select {
+            flex: 1;
+        }
+
+        .table-container {
+            border-radius: 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+
+        .navbar {
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .nav-buttons {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .hero h1 {
+            font-size: 26px;
+        }
+
+        .hero-btn {
+            padding: 10px 22px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+
+    <div class="brand">
+
+        <img src="/static/greenfield_college_of_engineering_logo.png" alt="College Logo">
+
+        <div class="college-name">
+            GreenField College of Engineering
+            <br>
+            <span class="username">
+                {{session.username}}
+            </span>
+        </div>
+
+    </div>
+
+    <div class="nav-buttons">
+
+        <a href="/myregistered" class="nav-btn view-btn">
+            <i class="fa-solid fa-calendar-days"></i>
+            View Registered Events
+        </a>
+
+        <a href="/logout" class="nav-btn logout-btn">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            Welcome, <i>{{session.username}}</i>!
+        </h1>
+
+        <p>
+            Enhance your skills by enrolling in our
+            interesting events!
+        </p>
+
+        <div class="price">
+            <span>Rs.</span> 150
+        </div>
+
+        <p class="event-info">
+            <i class="fa-regular fa-calendar"></i>
+            Event Date: 24-04-2026
+            &nbsp; | &nbsp;
+            <i class="fa-regular fa-clock"></i>
+            10:00 AM - 04:00 PM
+        </p>
+
+        <a href="#events" class="hero-btn">
+            Explore Upcoming Events
+            <i class="fa-solid fa-arrow-down"></i>
+        </a>
+
+    </div>
+
+</section>
+
+<section class="events-section" id="events">
+
+    <h2 class="section-title">
+        Upcoming Events
+    </h2>
+
+    <div class="line"></div>
+
+    <div class="filter-container">
+
+        <form method="get" id="filters" action="/events" class="filter-form">
+
+            <input
+                type="text"
+                name="search"
+                id="search"
+                class="search-box"
+                placeholder="Search by event name">
+
+            <select
+                name="category"
+                id="name"
+                class="category-select">
+
+                <option value="">All Categories</option>
+                <option value="Tech">Tech</option>
+                <option value="NonTech">NonTech</option>
+
+            </select>
+
+            <button
+                type="button"
+                class="filter-btn"
+                onclick="filtevents(event)"
+                title="Filter">
+
+                <i class="fa-solid fa-filter"></i>
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Event Name</th>
+                    <th>Event Date</th>
+                    <th>Time</th>
+                    <th>Participants</th>
+                    <th>Topics</th>
+                    <th>Category</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="eventstable">
+
+                {% for e in events %}
+
+                <tr>
+
+                    <td>
+                        {{e.eventname}}
+                    </td>
+
+                    <td>
+                        {{e.eventdate}}
+                    </td>
+
+                    <td>
+                        {{e.duration}}
+                    </td>
+
+                    <td>
+                        {{e.participants}}
+                    </td>
+
+                    <td>
+                        {{e.topics}}
+                    </td>
+
+                    <td>
+                        {{e.category}}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="register-area">
+
+        <a href="/registerevents" class="register-btn">
+
+            <i class="fa-solid fa-user-plus"></i>
+
+            Register for an Event
+
+        </a>
+
+    </div>
+
+</section>
+
+<footer>
+
+    © 2026 GreenField College of Engineering
+    &nbsp; | &nbsp;
+    All Rights Reserved
+
+</footer>
+
+<script>
+
+    function filtevents(event) {
+
+        event.preventDefault();
+
+        var search =
+            document.getElementById("search").value;
+
+        var category =
+            document.getElementById("name").value;
+
+        fetch(
+            `/events?search=${encodeURIComponent(search)}&category=${encodeURIComponent(category)}`
+        )
+
+        .then(response => response.text())
+        .then(data => {
+
+            document.getElementById("eventstable").innerHTML = data;
+
+        })
+        .catch(error => {
+
+            console.error("Error:", error);
+        });
+    }
+</script>
+</body>
+
+</html>

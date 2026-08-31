@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/adminstyle.css">
+</head>
+<body style="font-family: poppins;">
+    <div class="content">
+        <h2> Events </h2>
+        <div class="line"></div>
+    </div>
+    <form id="form" method="POST" style="display:none; margin:20px 0;">
+        <input type="text" id="eventname" name="eventname" placeholder="Event Name"><br><br>
+        <input type="text" id="eventdate" name="date" placeholder="Event Date"><br><br>
+        <input type="text" id="texttime" name="time" placeholder="Duration"><br><br>
+        <input type="text" id="participants" name="part" placeholder="Participants"><br><br>
+        <input type="text" id="topics" name="topics" placeholder="Topics"><br><br>
+        <input type="submit" id="add" value="Add">
+        <button type="button" onclick="closing()">Cancel</button>
+    </form>
+
+    <table border="1">
+        <tr>
+            <th> Event Name</th>
+            <th> Event Date</th>
+            <th> Time</th>
+            <th> No. of Participants</th>
+            <th> Topics</th>
+            <th> Category </th>
+            <th> </th>
+        </tr>
+         {% for e in events %}
+        <tr>
+            <td> {{e.eventname}}</td>
+            <td>{{e.eventdate}}</td>
+            <td>{{e.duration}} </td>
+            <td> {{e.participants}} </td>
+            <td> {{e.topics}}</td>
+            <td> {{e.category}}</td>
+            <td><button type="button" onclick="editEntry('{{ e.id }}', '{{ e.eventname}}', `{{ e.eventdate}}`,`{{ e.duration}}`,`{{ e.participants}}`,`{{ e.topics}}`)"> Edit </button><a href="{{url_for('delete',id=e.id)}}" ><button id="dlt">Delete </button></a></td>
+        </tr>
+         {% endfor %}
+    </table>
+    <script>
+        var form = document.getElementById("form");
+        var ename = document.getElementById("eventname");
+        var edate = document.getElementById("eventdate");
+        var time = document.getElementById("texttime");
+        var part = document.getElementById("participants");
+        var top = document.getElementById("topics");
+        var submitBtn = document.getElementById("add");
+
+        function closing(){
+            form.style.display = "none";
+        }
+
+        function editEntry(id, name, date, dur, partVal, topicsVal) {
+            form.style.display = "block";
+            form.action = "/edit/" + id;
+            submitBtn.value = "Update";
+            ename.value = name;
+            edate.value = date;
+            time.value = dur;
+            part.value = partVal;
+            top.value = topicsVal;
+        }
+    </script>
+</body>
+</html>

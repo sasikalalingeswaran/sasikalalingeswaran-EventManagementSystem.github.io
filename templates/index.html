@@ -1,1 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <section id="home">
+        <div class="navbar-header">
+                <img src="/static/greenfield_college_of_engineering_logo.png">
+            </div>
+            <ul class="nav-left">
+                <li><a href="#about">About </a> </li>
+                <li><a href="#events">Events </a></li>
+            </ul>
+            <ul class="nav-right">
+                <li><button class="navbar-btn" onclick="adminopen()">  Login  </button></li>
+                <li><button class="navbar-btn" onclick="opening()" style="width: 150px;">  User Login  </button></li>
+            </ul>
+        </div>
+    <form id="form" action="/login" method="POST" autocomplete="off">
+        <h1> User Login </h1>
+        <button id="closing" onclick="closeform()">&times;</button>
+        <p id="msg"></p>
+        <label for="username" class="uname"> Username:</label>
+        <input type="text" name="username" value="" autocomplete="username"><br>
+        <label for="password" class="pname"> Password:</label>
+        <input type="password" name="password" id="password" autocomplete="current-password">
+        <i class="fa-solid fa-eye" id="togglePassword"></i><br>
+        <button type="submit" id="login"> Login </button>
+        <p class="reg"> Don't have an account? <a href="/register"> Register here. </a></p>
+    </form>
 
+    <form id="adminform" action="/adminlogin" method="POST" autocomplete="off">
+        <h1> Admin Login </h1>
+        <button id="closing" onclick="admincloseform()">&times;</button>
+        <div class="error"> {{errormsg}} </div>
+        <label for="username" class="uname"> Username:</label>
+        <input type="text" name="username"><br>
+        <label for="password" class="pname"> Password:</label>
+       <input type="password" name="password" id="adminpassword">
+       <i class="fa-solid fa-eye" id="toggleAdminPassword"></i><br>
+        <button type="submit" id="login"> Login </button>
+    </form>
+        <div class="home-content">
+            <h4>GreenField College of Engineering</h4>
+            <div class="lines"></div>
+            <p>Technova 2k26</p>
+            <table border="1" align="center">
+                <tr>
+                    <th style="padding: 2px 10px;">Date</th>
+                    <th style="padding: 2px 10px;">Day</th>
+                    <th style="padding: 2px 10px;">Timing</th>
+                </tr>
+                <tr>
+                    <td style="padding: 2px 10px;">28-03-2026</td>
+                    <td style="padding: 2px 20px;">Saturday</td>
+                    <td style="padding: 2px 10px;">10:00am - 04:00pm</td>                            
+                </tr>
+            </table>
+            <h5>Venue: GreenField Auditorium</h5>
+        </div>
+    </section>
+   
+    <section id="about">
+    <h2 style="text-align: center; padding-top: 100px; font-size: 30px; font-family: poppins;"> Welcome</h2>
+    <div class="line" style="width: 15%; border: 2px solid orange; height: 1px; margin: 20px auto 0;"></div>
+    <div class="about-content" style="max-width: 800px; margin: 50px auto; text-align: center; font-family: poppins; color: black; line-height: 1.8; padding: 0 20px;">
+        <p class="para1">
+            GreenField College of Engineering is committed to nurturing innovation, technical excellence, 
+            and creative thinking among students. Through <strong>Technova 2k26</strong>, our annual technical 
+            and cultural fest, we bring together bright minds to showcase their skills across coding, design, 
+            presentation, and creative arts.
+        </p>
+        <p style="margin-top: 20px;" class="para2">
+            This year's fest features a diverse lineup — from PowerPoint Presentations and Debugging challenges 
+            to Quiz competitions, Photography, Ad-Zap, and even a fun Cooking without Fire event — designed to 
+            test both technical and creative talent.
+        </p>
+        <p style="margin-top: 20px;" class="para3">
+            Join us on <strong>28th March 2026</strong> at the <strong>GreenField Auditorium</strong> for a day 
+            full of competition, collaboration, and celebration of innovation.
+        </p>
+    </div>
+</section>
+
+<section id="events">
+    <h2 style="text-align: center; padding-top: 100px; font-size: 40px; font-family: poppins;"> Events </h2>
+    <div class="line" style="width: 50%; border: 2px solid orange; height: 2px; margin: 50px auto 0;"></div>
+
+    <div class="events">
+        <div class="ppt">
+            <img src="/static/ppt.png">
+            <h4>PowerPoint Presentation</h4>
+            <p>Topics: Blockchain, IoT, Artificial Intelligence</p>
+            <h6>Number of Participants: 2</h6>
+        </div>
+        <div class="debugging">
+            <img src="/static/debug.png">
+            <h4>Debugging</h4>
+            <p>Topics: C, C++, Python and Java</p>
+            <h6>Number of Participants: 1</h6>
+        </div>
+        <div class="quiz">
+            <img src="/static/quiz.jpg">
+            <h4>Quiz</h4>
+            <p>Topics: C, C++, Python, Java and Computer related</p>
+            <h6>Number of Participants: 1</h6>
+        </div>
+        <div class="ppt">
+            <img src="/static/cook.jpg">
+            <h4>Cooking without Fire</h4>
+            <p>Description: Must bring your own things</p>
+            <h6>Number of Participants: 3</h6>
+        </div>
+        <div class="debugging">
+            <img src="/static/photography.jpeg">
+            <h4>Photography</h4>
+            <p>Topics: Nature, Campus Environment</p>
+            <h6>Number of Participants: 1</h6>
+        </div>
+        <div class="quiz">
+            <img src="/static/ad.png">
+            <h4>Ad-Zap</h4>
+            <p>Topics are given on the spot</p>
+            <h6>Number of Participants: 2</h6>
+        </div>
+    </div>
+
+    <div class="content">
+        <p style="font-size: 15px; font-family: poppins; text-align: center; margin-top: 50px; color: black;">
+           Kindly LOGIN to explore more events.
+        </p>
+    </div>
+</section>
+
+<script>
+    var userform=document.getElementById("form")
+    var closing=document.getElementById("closing")
+    var userbtn=document.getElementsByClassName("navbar-btn")
+
+    var adminform=document.getElementById("adminform")
+    var adminclosing=document.getElementById("adminclosing")
+    var adminbtn=document.getElementsByClassName("navbar-btn")
+
+    function opening(){
+        userform.style.display="block"
+    }
+    function closeform(){
+        userform.style.display="none"
+    }
+
+    function adminopen(){
+        adminform.style.display="block"
+    }
+    function admincloseform(){
+        adminform.style.display="none"
+    }
+document.getElementById("form").addEventListener("submit",function(e){
+    e.preventDefault();
+    let formData=new FormData(this);
+    fetch("/login",{
+        method:"POST",
+        body:formData
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        if(data.status=="success"){
+            window.location="/userpage";
+        }
+        else{
+            document.getElementById("msg").innerText=data.message;
+        }
+    });
+});
+
+const password = document.getElementById("password");
+const togglePassword = document.getElementById("togglePassword");
+
+togglePassword.addEventListener("click", function () {
+    if (password.type === "password") {
+        password.type = "text";
+        this.classList.remove("fa-eye");
+        this.classList.add("fa-eye-slash");
+    } else {
+        password.type = "password";
+        this.classList.remove("fa-eye-slash");
+        this.classList.add("fa-eye");
+    }
+});
+
+const adminPassword = document.getElementById("adminpassword");
+const toggleAdminPassword = document.getElementById("toggleAdminPassword");
+
+toggleAdminPassword.addEventListener("click", function () {
+    if (adminPassword.type === "password") {
+        adminPassword.type = "text";
+        this.classList.remove("fa-eye");
+        this.classList.add("fa-eye-slash");
+    } else {
+        adminPassword.type = "password";
+        this.classList.remove("fa-eye-slash");
+        this.classList.add("fa-eye");
+    }
+});
+</script>
+</body>
+</html>
