@@ -29,8 +29,6 @@
         font-family: 'Poppins', sans-serif;
     }
 
-    /* PAYMENT CARD */
-
     #pay {
         width: 400px;
         padding: 32px;
@@ -44,8 +42,6 @@
 
         text-align: center;
     }
-
-    /* TOP ICON */
 
     .payment-icon {
         margin-left: 20px;
@@ -81,17 +77,13 @@
         color: #777;
     }
 
-    /* DIVIDER */
-
     .divider {
         height: 1px;
         background: #e5e7eb;
 
         margin: 22px 0;
     }
-
-    /* PAY TO */
-
+    
     .pay-to {
         text-align: left;
 
@@ -206,8 +198,6 @@
         margin-right: 7px;
     }
 
-    /* UPI LOGOS */
-
     .upi-methods {
         margin-top: 15px;
         display: flex;
@@ -236,25 +226,15 @@
 <body>
 
 <div id="pay">
-
-<!-- PAYMENT ICON -->
-
 <div class="payment-icon">
     <i class="fa-solid fa-credit-card"></i>
     <p> Event Registration Fee </p>
 </div>
-
-<!-- AMOUNT -->
-
 <h2>
     <span>Rs.</span>150
 </h2>
 
-
 <div class="divider"></div>
-
-<!-- PAY TO -->
-
 <div class="pay-to">
 
     <div class="pay-to-title">
@@ -268,8 +248,6 @@
 
 </div>
 
-<!-- PAYMENT FORM -->
-
 <form id="payment">
 
     <label class="input-title">
@@ -277,17 +255,8 @@
     </label>
 
     <div class="input-box">
-
         <i class="fa-solid fa-wallet"></i>
-
-        <input
-            type="text"
-            name="upi"
-            placeholder="example@upi"
-            autocomplete="off"
-            required
-        >
-
+        <input type="text" name="upi" placeholder="example@upi" autocomplete="off" required>
     </div>
 
     <button type="submit" id="paynow">
@@ -296,10 +265,7 @@
             Pay ₹150
         </a>
     </button>
-
 </form>
-
-<!-- PAYMENT METHODS -->
 
 <div class="upi-methods">
     <span>UPI</span>
@@ -307,8 +273,6 @@
     <span>PhonePe</span>
     <span>Paytm</span>
 </div>
-
-
 </div>
 
 </body>
